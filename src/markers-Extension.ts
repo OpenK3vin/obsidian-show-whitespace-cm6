@@ -6,7 +6,7 @@ import {
     WidgetType,
 } from "@codemirror/view";
 import type { SWSettings } from "./@types/settings";
-import { createWhitespacePlugin } from "./debounce-util";
+import { createWhitespacePlugin, type DirtyRange } from "./debounce-util";
 
 /** Lines ending in two or more spaces are Markdown hard line breaks. */
 const HARD_BREAK_RE = / {2,}$/;
@@ -79,6 +79,7 @@ function buildDecorations(
     showHardLineBreaks: boolean,
     showUnicodeWhitespace: boolean,
     showCustomWhitespace: boolean,
+    dirtyRanges?: DirtyRange[],
 ): DecorationSet {
     try {
         const docLength = view.state.doc.length;
@@ -88,7 +89,14 @@ function buildDecorations(
         const activeLineNum = view.state.doc.lineAt(head).number;
 
         const widgets: Range<Decoration>[] = [];
-        for (const { from, to } of view.visibleRanges) {
+
+        // Use dirty ranges if provided, otherwise use visible ranges
+        const ranges =
+            dirtyRanges && dirtyRanges.length > 0
+                ? dirtyRanges
+                : view.visibleRanges;
+
+        for (const { from, to } of ranges) {
             let pos = Math.max(0, Math.min(from, docLength));
             const rangeEnd = Math.min(to, docLength);
             while (pos <= rangeEnd) {
@@ -195,7 +203,7 @@ export function markersExtension(settings: SWSettings): Extension {
         showCodeblockWhitespace ||
         showAllCodeblockWhitespace ||
         showTableWhitespace;
-    return createWhitespacePlugin((view) =>
+    return createWhitespacePlugin((view, dirtyRanges) =>
         buildDecorations(
             view,
             showSpaces,
@@ -203,6 +211,7 @@ export function markersExtension(settings: SWSettings): Extension {
             showHardLineBreaks,
             showUnicodeWhitespace,
             showCustomWhitespace,
+            dirtyRanges,
         ),
     );
 }

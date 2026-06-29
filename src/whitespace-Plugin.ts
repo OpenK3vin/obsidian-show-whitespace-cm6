@@ -80,22 +80,18 @@ export class ShowWhitespacePlugin extends Plugin {
         };
         this.addCommand(markToggle);
 
+        const customWhitespaceToggle: Command = {
+            id: "custom-whitespace-toggle",
+            name: "Toggle Custom Whitespace",
+            icon: "pilcrow",
+            callback: () => this.toggleCustomWhitespace(),
+        };
+        this.addCommand(customWhitespaceToggle);
+
         this.addRibbonIcon(
             "pilcrow", // or 'space', 'type' — any lucide icon name
             "Toggle custom whitespace",
-            () => {
-                this.settings.showCustomWhitespace =
-                    !this.settings.showCustomWhitespace;
-                void this.saveSettings();
-                this.updateClasses();
-                this.handleExtension();
-
-                new Notice(
-                    this.settings.showCustomWhitespace
-                        ? "Custom whitespace markers on"
-                        : "Custom whitespace markers off",
-                );
-            },
+            () => this.toggleCustomWhitespace(),
         );
     }
 
@@ -222,5 +218,18 @@ export class ShowWhitespacePlugin extends Plugin {
 
     async saveSettings(): Promise<void> {
         await this.saveData(this.settings);
+    }
+
+    toggleCustomWhitespace(): void {
+        this.settings.showCustomWhitespace =
+            !this.settings.showCustomWhitespace;
+        void this.saveSettings();
+        this.updateClasses();
+        this.handleExtension();
+        new Notice(
+            this.settings.showCustomWhitespace
+                ? "Custom whitespace markers on"
+                : "Custom whitespace markers off",
+        );
     }
 }

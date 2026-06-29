@@ -10,7 +10,8 @@ This is a simple plugin to enable CodeMirror 6 extensions to highlight whitespac
 
 - **Whitespace Visualization:** Displays leading and trailing whitespace in your notes.
 - **Unicode Whitespace Identification:** Highlights non-standard Unicode whitespace characters (like NO-BREAK SPACE, thin spaces, etc.) with dotted underlines to make them visible.
-- **Zero-width Space (Custom Whitespace):** Reveals hidden zero-width spaces (e.g., `\u200b`) with a clear outline so they can be spotted and managed easily.
+- **Zero-width Space (Custom Whitespace):** Reveals hidden zero-width spaces (e.g., `\u200b`) with a clear outline so they can be spotted and managed easily. *Includes a quick toggle via Command Palette and Ribbon icon.*
+- **Performance Optimized:** Incremental rendering updates ensure smooth typing without UI flickering.
 - **Blockquote Identification:** Highlights the leading caret for blockquotes, making them easily distinguishable.
 - **List marker whitespace:** Slight background applied to whitespace assigned to list markers (bullets or numbers)
 
