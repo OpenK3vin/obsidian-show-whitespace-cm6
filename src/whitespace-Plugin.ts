@@ -3,7 +3,7 @@ import {
     EditorState,
     type Extension,
 } from "@codemirror/state";
-import { type Command, debounce, Plugin } from "obsidian";
+import { type Command, debounce, Notice, Plugin } from "obsidian";
 import type { SWSettings } from "./@types/settings";
 import { markersExtension } from "./markers-Extension";
 import { ShowWhitespaceSettingsTab } from "./whitespace-SettingsTab";
@@ -79,6 +79,24 @@ export class ShowWhitespacePlugin extends Plugin {
             callback: async () => this.toggleExtension(),
         };
         this.addCommand(markToggle);
+
+        this.addRibbonIcon(
+            "pilcrow", // or 'space', 'type' — any lucide icon name
+            "Toggle custom whitespace",
+            () => {
+                this.settings.showCustomWhitespace =
+                    !this.settings.showCustomWhitespace;
+                void this.saveSettings();
+                this.updateClasses();
+                this.handleExtension();
+
+                new Notice(
+                    this.settings.showCustomWhitespace
+                        ? "Custom whitespace markers on"
+                        : "Custom whitespace markers off",
+                );
+            },
+        );
     }
 
     handleExtension(): void {
