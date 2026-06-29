@@ -95,6 +95,19 @@ body:not(.swcm6-nix-plugin-styles) {
     text-underline-offset: 3px;
   }
 
+  // version 1
+  // .swcm6-custom-space {
+  //   text-decoration: underline;
+  //   text-decoration-color: var(--color-purple);
+  //   text-decoration-style: dotted;
+  //   text-underline-offset: 3px;
+  // }
+  .swcm6-custom-space {
+    outline: 1px solid var(--swcm6-whitespace-color);
+    outline-offset: -1px;
+  }
+
+
   .swcm6-line-end-marker::after {
     content: var(--line-end);
     color: var(--swcm6-whitespace-color);

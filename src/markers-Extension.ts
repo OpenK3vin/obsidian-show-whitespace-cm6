@@ -21,6 +21,8 @@ const HARD_BREAK_RE = / {2,}$/;
  * U+3000  IDEOGRAPHIC SPACE
  */
 const UNICODE_SPACE_RE = /[\u00A0\u1680\u2000-\u200A\u202F\u205F\u3000]/g;
+const ZERO_WIDTH_SPACE = "\u200b";
+const ZERO_WIDTH_SPACE_RE = new RegExp(`${ZERO_WIDTH_SPACE}`, "g");
 
 class LineEndWidget extends WidgetType {
     eq(_other: LineEndWidget): boolean {
@@ -52,12 +54,31 @@ class HardBreakWidget extends WidgetType {
     }
 }
 
+class CustomWhitespaceWidget extends WidgetType {
+    eq(_other: CustomWhitespaceWidget): boolean {
+        return true;
+    }
+
+    toDOM(): HTMLElement {
+        const el = createSpan();
+        el.className = "swcm6-custom-space";
+        el.setAttribute("aria-hidden", "true");
+        el.textContent = " "; // visible space to give it width
+        return el;
+    }
+
+    ignoreEvent(): boolean {
+        return true;
+    }
+}
+
 function buildDecorations(
     view: EditorView,
     showSpaces: boolean,
     showLineEndings: boolean,
     showHardLineBreaks: boolean,
     showUnicodeWhitespace: boolean,
+    showCustomWhitespace: boolean,
 ): DecorationSet {
     try {
         const docLength = view.state.doc.length;
@@ -113,6 +134,19 @@ function buildDecorations(
                     }
                 }
 
+                if (showCustomWhitespace) {
+                    for (const match of line.text.matchAll(
+                        ZERO_WIDTH_SPACE_RE,
+                    )) {
+                        const mFrom = line.from + (match.index ?? 0);
+                        widgets.push(
+                            Decoration.replace({
+                                widget: new CustomWhitespaceWidget(),
+                            }).range(mFrom, mFrom + match[0].length),
+                        );
+                    }
+                }
+
                 // Line-end markers: skip the cursor line to avoid crowding the
                 // insertion point.
                 if (line.number !== activeLineNum) {
@@ -148,6 +182,7 @@ export function markersExtension(settings: SWSettings): Extension {
         showLineEndings,
         showHardLineBreaks,
         showUnicodeWhitespace,
+        showCustomWhitespace,
         showAllWhitespace,
         showFrontmatterWhitespace,
         showCodeblockWhitespace,
@@ -167,6 +202,7 @@ export function markersExtension(settings: SWSettings): Extension {
             showLineEndings,
             showHardLineBreaks,
             showUnicodeWhitespace,
+            showCustomWhitespace,
         ),
     );
 }

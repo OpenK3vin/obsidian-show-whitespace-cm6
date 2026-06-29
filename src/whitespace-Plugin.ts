@@ -42,6 +42,7 @@ export const DEFAULT_SETTINGS: SWSettings = {
     showLineEndings: true,
     showHardLineBreaks: true,
     showUnicodeWhitespace: true,
+    showCustomWhitespace: false,
     // Structural
     outlineListMarkers: false,
     showBlockquoteMarkers: false,
@@ -115,6 +116,9 @@ export class ShowWhitespacePlugin extends Plugin {
             }
             if (this.settings.showUnicodeWhitespace) {
                 this.classList.push("swcm6-show-unicode-whitespace");
+            }
+            if (this.settings.showCustomWhitespace) {
+                this.classList.push("swcm6-show-custom-whitespace");
             }
             if (this.settings.showFrontmatterWhitespace) {
                 this.classList.push("swcm6-show-frontmatter-whitespace");

@@ -5,6 +5,7 @@ export interface SWSettings {
     showLineEndings: boolean;
     showHardLineBreaks: boolean;
     showUnicodeWhitespace: boolean;
+    showCustomWhitespace: boolean;
     // Structural
     showBlockquoteMarkers: boolean;
     outlineListMarkers: boolean;

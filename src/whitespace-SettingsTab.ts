@@ -102,6 +102,11 @@ export class ShowWhitespaceSettingsTab extends PluginSettingTab {
             i18n.showUnicodeWhitespace.name,
             i18n.showUnicodeWhitespace.desc,
         );
+        this.toggle(
+            "showCustomWhitespace",
+            i18n.showCustomWhitespace.name,
+            i18n.showCustomWhitespace.desc,
+        );
 
         // ── Structural ────────────────────────────────────────────────────────
         new Setting(this.containerEl)

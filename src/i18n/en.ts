@@ -33,6 +33,10 @@ export const en = {
         name: "Unicode whitespace",
         desc: "Highlight non-breaking spaces and other Unicode whitespace characters (NBSP, thin space, etc.) that are visually indistinguishable from regular spaces.",
     },
+    showCustomWhitespace: {
+        name: "Custom whitespace (U+0020)",
+        desc: "Highlight custom spaces (U+0020) as dots.",
+    },
 
     structuralSection: {
         name: "Structural",
