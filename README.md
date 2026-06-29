@@ -1,12 +1,16 @@
-# Obsidian: Show Whitespace
+# Obsidian: Show Whitespace (k3vin)
 
-[![GitHub tag (Latest by date)](https://img.shields.io/github/v/tag/ebullient/obsidian-show-whitespace-cm6)](https://github.com/ebullient/obsidian-show-whitespace-cm6/releases) ![GitHub all releases](https://img.shields.io/github/downloads/ebullient/obsidian-show-whitespace-cm6/total?color=success) [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
+[![GitHub tag (Latest by date)](https://img.shields.io/github/v/tag/OpenK3vin/obsidian-show-whitespace-cm6)](https://github.com/OpenK3vin/obsidian-show-whitespace-cm6/releases) ![GitHub all releases](https://img.shields.io/github/downloads/OpenK3vin/obsidian-show-whitespace-cm6/total?color=success) [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
+
+> **Note:** This is a fork of the original [Show Whitespace](https://github.com/ebullient/obsidian-show-whitespace-cm6) plugin by [ebullient](https://github.com/ebullient).
 
 This is a simple plugin to enable CodeMirror 6 extensions to highlight whitespace in both Source and Live Preview modes.
 
 ## Features
 
 - **Whitespace Visualization:** Displays leading and trailing whitespace in your notes.
+- **Unicode Whitespace Identification:** Highlights non-standard Unicode whitespace characters (like NO-BREAK SPACE, thin spaces, etc.) with dotted underlines to make them visible.
+- **Zero-width Space (Custom Whitespace):** Reveals hidden zero-width spaces (e.g., `\u200b`) with a clear outline so they can be spotted and managed easily.
 - **Blockquote Identification:** Highlights the leading caret for blockquotes, making them easily distinguishable.
 - **List marker whitespace:** Slight background applied to whitespace assigned to list markers (bullets or numbers)
 
@@ -67,7 +71,7 @@ To install:
 2. **Configure BRAT**:
     - Open BRAT settings (`Settings` -> `Obsidian 42 - BRAT`).
     - In the `Beta Plugin List` section, click `Add Beta Plugin`.
-    - Specify this repository: `ebullient/obsidian-show-whitespace-cm6`.
+    - Specify this repository: `OpenK3vin/obsidian-show-whitespace-cm6`.
 3. **Enable the Plugin**:
     - Navigate to `Settings` -> `Community Plugins`.
     - Enable the plugin.
@@ -80,11 +84,11 @@ Pull requests are both welcome and appreciated. 😀
 
 Interested in supporting further development? Consider buying me a coffee!
 
-[<img alt="" src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" width="200px"/>](https://www.buymeacoffee.com/ebullient)
+[<img alt="" src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" width="200px"/>](https://www.buymeacoffee.com/k3vin)
 
 ## Attribution
 
-While this is a new implementation for CM6, styles and characters are inspired by behavior in VSCode and the original [Show Whitespace](https://github.com/deathau/cm-show-whitespace-obsidian) plugin by [death_au](https://github.com/deathau).
+While this fork contains new features and improvements by k3vin, it is built upon the excellent foundation of the original [Show Whitespace](https://github.com/ebullient/obsidian-show-whitespace-cm6) plugin by [ebullient](https://github.com/ebullient), which itself was inspired by behavior in VSCode and the original [Show Whitespace](https://github.com/deathau/cm-show-whitespace-obsidian) plugin by [death_au](https://github.com/deathau).
 
 ## License
 

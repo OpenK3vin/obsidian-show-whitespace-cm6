@@ -23,8 +23,8 @@
     "obsidian-plugin",
     "obsidian-md-plugin"
   ],
-  "author": "ebullient",
-  "repository": "github.com:ebullient/obsidian-show-whitespace-cm6",
+  "author": "k3vin",
+  "repository": "github.com:OpenK3vin/obsidian-show-whitespace-cm6",
   "license": "AGPL-3.0-only",
   "devDependencies": {
     "@biomejs/biome": "2.4.15",
